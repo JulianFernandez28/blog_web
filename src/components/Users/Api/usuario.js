@@ -18,3 +18,4 @@ export function registerUser(UsuarioDto) {
     });
   }
   
+

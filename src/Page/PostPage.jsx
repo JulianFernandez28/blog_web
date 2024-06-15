@@ -3,9 +3,10 @@ import { getPosts } from '../components/Posts/Api/post';
 import { formatDate } from '../utilities/formatDate';
 import CreatePost from '../components/Posts/CreatePost';
 
+
+
 const PostsPage = () => {
   const [posts, setPosts] = useState([]);
-
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -22,7 +23,7 @@ const PostsPage = () => {
 
   return (
     <div className="p-3">
-      <CreatePost />
+      <CreatePost/>
       <div className='p-2'>
         <h1 className='display-6 text-left text-danger mb-4'>Publicaciones</h1>
         <hr />
@@ -39,7 +40,7 @@ const PostsPage = () => {
                 </div>
                 <div className="card-footer text-muted d-flex justify-content-between align-items-center">
                   Publicado por {post.usuario.nombres} el {formatDate(post.createOn)}
-                  <button type="button" className="btn btn-primary btn-lg">Ver</button>
+                  <button type="button" className="btn btn-primary btn-sm">Comentarios</button>
                 </div>
               </div>
             </div>

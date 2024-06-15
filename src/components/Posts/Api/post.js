@@ -4,13 +4,40 @@ import axios from 'axios';
 
 const API_URL = 'https://localhost:7123/api/';
 
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFueUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsIm5iZiI6MTcxODQwODcyMiwiZXhwIjoxNzE5MDEzNTIyLCJpYXQiOjE3MTg0MDg3MjJ9.Q1SkQb8LijOFUxZ7fp1vQjPJdkJqz5IqkZxmf-LnRfM";
+
 
 
 export function getPosts() {
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Imp1bGlhbkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJuYmYiOjE3MTgzNDYyNDgsImV4cCI6MTcxODk1MTA0OCwiaWF0IjoxNzE4MzQ2MjQ4fQ.hF4PRGBV7naE37vAWXTzTfQfxtEhv09spHTWLyPdM4A";
   return axios.get(`${API_URL}Post/PostPaginado?PageNumber=1&PageSize=20`, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
   });
 }
+
+
+
+export const createPublicacion = async (postDto) => {
+  const formData = new FormData();
+
+  // Agrega los campos al formData
+  Object.keys(postDto).forEach(key => {
+    formData.append(key, postDto[key]);
+  });
+
+  try {
+    const response = await axios.post(`${API_URL}Post`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${token}` // Aquí se agrega el token
+      }
+    });
+
+    // Aquí puedes manejar la respuesta de la API
+    console.log(response.data);
+  } catch (error) {
+    // Aquí puedes manejar los errores
+    console.error('Error al enviar el post:', error);
+  }
+};
