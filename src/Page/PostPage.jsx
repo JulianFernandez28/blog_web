@@ -23,17 +23,16 @@ const PostsPage = () => {
   }, []);
 
   return (
-    <div className="p-3">
+    <div className="container mt-3 p-3">
       <CreatePost/>
-      <div className='p-2'>
-        <h1 className='display-6 text-left text-danger mb-4'>Publicaciones</h1>
-        <hr />
+      <div className='mx-2'>
         {posts.map(post => (
           <div key={post.id} className="card mb-3">
             <div className="row no-gutters">
-              <div className="col-md-4 d-flex justify-content-center align-items-center">
-                <img src={post.image} alt={post.title} className="card-img p-1" style={{ width: '200px', height: '200px', objectFit: 'cover' }} />
-              </div>
+            <div className="col-md-4 d-flex justify-content-center align-items-center">
+  <img src={post.image} alt={post.title} className="card-img p-1" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+</div>
+
               <div className="col-md-8 d-flex flex-column">
                 <div className="card-body">
                   <h5 className="card-title">{post.title}</h5>

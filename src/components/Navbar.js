@@ -20,7 +20,7 @@ const NavigationBar = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="ms-auto">
         <Link to="/postPage" className='nav-link text-light fw-bold'>Publicaciones</Link>
-        <Nav.Link href="#perfil" className='text-light fw-bold'>Mi Perfil</Nav.Link>
+        <Link to="/perfil" className='nav-link text-light fw-bold'>Mi perfil</Link>
     </Nav>
 </Navbar.Collapse>
             </Container>

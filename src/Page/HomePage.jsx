@@ -19,7 +19,7 @@ const HomePage = () => {
                
                   <LoginForm />
                 
-                <p className="card-text"><small className="text-muted">¿No tienes una cuenta? <a href="/register">Regístrate</a></small></p>
+                <p className="card-text"><small className="text-muted">¿No tienes una cuenta? <a href="/registro">Regístrate</a></small></p>
               </div>
             </div>
           </div>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getCommentsByPostId } from './Api/Comments';
+import { formatDate } from '../../utilities/formatDate';
 
-const CommentList = ({ postId }) => {
+const CommentList = ({ postId,commentAdded }) => {
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
@@ -15,7 +16,9 @@ const CommentList = ({ postId }) => {
         };
 
         fetchComments();
-    }, [postId]);
+    }, [postId,commentAdded]);
+
+    
 
     if (!comments.length) {
         return <div>No hay comentarios para mostrar.</div>;
@@ -28,7 +31,7 @@ const CommentList = ({ postId }) => {
                     <div className="card-body">
                         <div className="d-flex justify-content-end">
 
-                            <p className="card-text"><small className="text-muted">Publicado el {new Date(comment.createOn).toLocaleDateString()}</small></p>
+                            <p className="card-text"><small className="text-muted">Publicado el {formatDate(comment.createOn)}</small></p>
                         </div>
                         <h5 className="card-title">{comment.usuario.nombres}</h5>
                         <p className="card-text">{comment.content}</p>

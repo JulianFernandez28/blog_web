@@ -14,20 +14,22 @@ export function getCommentsByPostId(postId) {
     });
 }
 
-export const postComment = async (comment, usuarioId, postId) => {
+export const postComment = async (comment, postId) => {
   const token = localStorage.getItem('token');
+  const usuarioId = localStorage.getItem('userId');
     const data = {
       content: comment,
       usuarioId,
       postId
     };
+    console.log(JSON.stringify(data));
     try {
-      const response = await axios.post(`${API_URL}Comment`,{
+      const response = await axios.post(`${API_URL}Comment`,JSON.stringify(data),{
         headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           }
-      },data);
+      });
       return response.data;
     } catch (error) {
       console.error(error);

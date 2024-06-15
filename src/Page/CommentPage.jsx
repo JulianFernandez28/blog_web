@@ -7,6 +7,10 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
+
+
 
 
 
@@ -14,6 +18,8 @@ import Col from 'react-bootstrap/Col';
 const CommentPage = () => {
   const { id } = useParams();
   const [post, setPost] = useState(null);
+  const [commentAdded, setCommentAdded] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -34,10 +40,13 @@ const CommentPage = () => {
 
   return (
     <Container className="mt-3">
+      <button onClick={() => navigate(-1)} className="btn btn-warning mx-4">
+        <FaArrowLeft /> Regresar
+      </button>
       <Card className='m-4'>
         <Row>
           <Col md={3}>
-            <Card.Img variant="top" src={post.image} style={{ width: '100%', objectFit: 'cover' }} />
+            <Card.Img variant="top" src={post.image} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </Col>
           <Col md={9}>
             <Card.Body>
@@ -54,24 +63,14 @@ const CommentPage = () => {
             </Card.Body>
           </Col>
         </Row>
-        <hr /> {/* Línea divisoria */}
         <Row className="m-4 align-items-center ">
-          
-            <CommentInput></CommentInput>
-           
-         
+          <CommentInput postId={post.id} onCommentAdded={() => setCommentAdded(!commentAdded)} />
         </Row>
         <hr />
         <Row className="m-4 align-items-center ">
-          
-            
-        <CommentList postId={post.id}/>
-         
+          <CommentList postId={post.id} commentAdded={commentAdded} />
         </Row>
       </Card>
-      
-
-
     </Container>
   );
 };

@@ -5,6 +5,9 @@ import PostsPage from './Page/PostPage';
 import HomePage from './Page/HomePage';
 import CommentPage from './Page/CommentPage';
 import Footer from './components/Footer';
+import UserPage from './Page/UserPage';
+import RegisterPage from './Page/RegisterPage';
+import ProtectedRoute from './utilities/ProtectedLayout';
 
 function App() {
   return (
@@ -12,10 +15,14 @@ function App() {
       <div className="App">
         <NavigationBar/>
         <Routes>
-          <Route path="/post/:id" element={<CommentPage />} />
-          <Route path="/postPage" element={<PostsPage />} />
           <Route path="/login" element={<HomePage />} />
+          <Route path="/registro" element={<RegisterPage />} />
           <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<ProtectedRoute />}>
+            <Route path="post/:id" element={<CommentPage />} />
+            <Route path="postPage" element={<PostsPage />} />
+            <Route path="perfil" element={<UserPage />} />
+          </Route>
         </Routes>
         <Footer/>
       </div>
