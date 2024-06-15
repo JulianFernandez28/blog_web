@@ -4,11 +4,12 @@ import axios from 'axios';
 
 const API_URL = 'https://localhost:7123/api/';
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFueUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsIm5iZiI6MTcxODQwODcyMiwiZXhwIjoxNzE5MDEzNTIyLCJpYXQiOjE3MTg0MDg3MjJ9.Q1SkQb8LijOFUxZ7fp1vQjPJdkJqz5IqkZxmf-LnRfM";
 
 
 
 export function getPosts() {
+  const token = localStorage.getItem('token');
+
   return axios.get(`${API_URL}Post/PostPaginado?PageNumber=1&PageSize=20`, {
     headers: {
       'Authorization': `Bearer ${token}`
@@ -18,6 +19,7 @@ export function getPosts() {
 
 
 export function getPostById(id) {
+  const token = localStorage.getItem('token');
   return axios.get(`${API_URL}Post/${id}`, {
     headers: {
       'Authorization': `Bearer ${token}`
@@ -28,6 +30,7 @@ export function getPostById(id) {
 
 
 export const createPublicacion = async (postDto) => {
+  const token = localStorage.getItem('token');
   const formData = new FormData();
 
   // Agrega los campos al formData
