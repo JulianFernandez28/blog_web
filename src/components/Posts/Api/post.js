@@ -17,6 +17,15 @@ export function getPosts() {
 }
 
 
+export function getPostById(id) {
+  return axios.get(`${API_URL}Post/${id}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+}
+
+
 
 export const createPublicacion = async (postDto) => {
   const formData = new FormData();

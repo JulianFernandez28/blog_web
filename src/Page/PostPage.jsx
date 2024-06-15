@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getPosts } from '../components/Posts/Api/post';
 import { formatDate } from '../utilities/formatDate';
 import CreatePost from '../components/Posts/CreatePost';
+import { Link } from 'react-router-dom';
 
 
 
@@ -40,7 +41,7 @@ const PostsPage = () => {
                 </div>
                 <div className="card-footer text-muted d-flex justify-content-between align-items-center">
                   Publicado por {post.usuario.nombres} el {formatDate(post.createOn)}
-                  <button type="button" className="btn btn-primary btn-sm">Comentarios</button>
+                  <Link to={`/post/${post.id}`} className="btn btn-primary btn-sm">Comentarios</Link>
                 </div>
               </div>
             </div>

@@ -58,7 +58,7 @@ const CreatePostModal = ({ isOpen, closeModal }) => {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
-        <Button variant="primary" onClick={handleSubmit}>Guardar cambios</Button>
+        <Button variant="primary" onClick={handleSubmit}>Guardar</Button>
       </Modal.Footer>
     </Modal>
   );

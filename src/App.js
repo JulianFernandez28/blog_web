@@ -1,15 +1,22 @@
-import NavigationBar from "./components/Navbar";
-import Footer from "./components/Footer";
-import PostsPage from "./Page/PostPage";
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import NavigationBar from './components/Navbar';
+import PostsPage from './Page/PostPage';
+import CommentPage from './Page/CommentPage';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <NavigationBar/>
-      <PostsPage/>
-      <Footer/>
-
-    </div>
+    <Router>
+      <div className="App">
+        <NavigationBar/>
+        <Routes>
+          <Route path="/post/:id" element={<CommentPage />} />
+          <Route path="/" element={<PostsPage />} />
+        </Routes>
+        <Footer/>
+      </div>
+    </Router>
   );
 }
 
