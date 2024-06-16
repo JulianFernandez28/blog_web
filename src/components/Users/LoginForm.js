@@ -16,6 +16,7 @@ const LoginForm = () => {
           const response = await loginUser(form.email, form.password);
           if (response.status === 200) {
             localStorage.setItem('userId', response.data.resultado.usuario.id);
+            localStorage.setItem('correo', response.data.resultado.usuario.userName);
             localStorage.setItem('userName', response.data.resultado.usuario.nombres);
             localStorage.setItem('token', response.data.resultado.token);
         

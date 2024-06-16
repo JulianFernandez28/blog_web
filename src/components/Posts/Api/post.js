@@ -4,13 +4,10 @@ import axios from 'axios';
 
 const API_URL = 'https://localhost:7123/api/';
 
-
-
-
-export function getPosts() {
+export async function getPosts() {
   const token = localStorage.getItem('token');
 
-  return axios.get(`${API_URL}Post/PostPaginado?PageNumber=1&PageSize=20`, {
+  return await axios.get(`${API_URL}Post/PostPaginado?PageNumber=1&PageSize=20`, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
@@ -18,15 +15,35 @@ export function getPosts() {
 }
 
 
-export function getPostById(id) {
+export async function getPostById(id) {
   const token = localStorage.getItem('token');
-  return axios.get(`${API_URL}Post/${id}`, {
+  return await axios.get(`${API_URL}Post/${id}`, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
   });
 }
 
+export async function updatePost(id, postUpdateDto){
+  const token  = localStorage.getItem('token');
+
+  return await axios.put(`${API_URL}Post/${id}`, JSON.stringify(postUpdateDto), {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  })
+}
+
+export async function deletePost(id){
+  const token = localStorage.getItem('token');
+
+  return await axios.delete(`${API_URL}Post/${id}`,{
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+}
 
 
 export const createPublicacion = async (postDto) => {
@@ -46,10 +63,8 @@ export const createPublicacion = async (postDto) => {
       }
     });
 
-    // Aquí puedes manejar la respuesta de la API
     console.log(response.data);
   } catch (error) {
-    // Aquí puedes manejar los errores
     console.error('Error al enviar el post:', error);
   }
 };

@@ -9,14 +9,16 @@ const CreatePostModal = ({ isOpen, closeModal }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
+  const usuarioId = localStorage.getItem('userId');
+
   const handleImageChange = (e) => {
     setImageFile(e.target.files[0]);
     setImagePreviewUrl(URL.createObjectURL(e.target.files[0]));
   };
 
   const handleClose = () => {
-    setImageFile(null); // Borra el archivo de imagen cargado
-    setImagePreviewUrl(null); // Borra la URL de vista previa de la imagen
+    setImageFile(null); 
+    setImagePreviewUrl(null); 
     closeModal();
   };
 
@@ -24,8 +26,8 @@ const CreatePostModal = ({ isOpen, closeModal }) => {
     const postDto = {
       title,
       content,
-      image: imageFile, // Aquí estás pasando el archivo de imagen, no la URL del objeto
-      usuarioId: "d6c61be8-65a6-4dd6-b80d-bab3c24a66f1"
+      image: imageFile, 
+      usuarioId: usuarioId
     };
 
     await createPublicacion(postDto);
