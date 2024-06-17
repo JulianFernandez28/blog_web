@@ -30,8 +30,8 @@ const RegisterForm = () => {
         console.log(UserCreateDto)
 
         try {
-            var response = await registerUser(UserCreateDto);
-            console.log(response)
+            await registerUser(UserCreateDto);
+
             navigate('/login');
         } catch (error) {
             console.log(error)

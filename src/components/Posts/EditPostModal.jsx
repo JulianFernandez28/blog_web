@@ -28,8 +28,7 @@ const EditPostModal = ({ show, handleClose, post }) => {
         };
 
         try {
-            var response = await updatePost(post.id, data)
-            console.log(response.data);
+            await updatePost(post.id, data)
             handleClose();
             setShowConfirm(false);
 

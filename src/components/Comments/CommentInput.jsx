@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { postComment } from './Api/Comments';// Asegúrate de que la ruta sea correcta
 
-const CommentInput = ({ postId,onCommentAdded }) => { // postId se pasa como un prop
+const CommentInput = ({ postId, onCommentAdded }) => { // postId se pasa como un prop
   const [comment, setComment] = useState('');
 
   const handleInputChange = (event) => {
@@ -10,10 +10,13 @@ const CommentInput = ({ postId,onCommentAdded }) => { // postId se pasa como un 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = await postComment(comment, postId);
-    console.log(data);
-    setComment('');
-    onCommentAdded();
+    try {
+      await postComment(comment, postId);
+      setComment('');
+      onCommentAdded();
+    } catch (error) {
+
+    }
   }
 
   return (

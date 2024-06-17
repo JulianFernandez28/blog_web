@@ -8,9 +8,9 @@ const DeletePostModal = ({ show, handleClose, post, fetchPosts }) => {
 
 
     try {
-      var response = await deletePost(post.id);
-      console.log(response);
-      fetchPosts(); // Recarga los posts
+     await deletePost(post.id);
+
+      fetchPosts();
       handleClose();
     } catch (error) {
       if (error.response && error.response.status >= 400) {

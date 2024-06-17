@@ -35,3 +35,25 @@ export const postComment = async (comment, postId) => {
       console.error(error);
     }
   }
+
+  export async function updateComment(id, commentUpdateDto){
+    const token  = localStorage.getItem('token');
+  
+    return await axios.put(`${API_URL}Comment/${id}`, JSON.stringify(commentUpdateDto), {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+  }
+
+  export async function deleteComment(id){
+    const token = localStorage.getItem('token');
+  
+    return await axios.delete(`${API_URL}Comment/${id}`,{
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+  }
+  

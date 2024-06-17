@@ -20,13 +20,13 @@ const UserPage = () => {
 
 
   const onLogout = () => {
-    // Clear the localStorage
+
     localStorage.removeItem('userId');
     localStorage.removeItem('userName');
     localStorage.removeItem('token');
     localStorage.removeItem('correo');
 
-    // Redirect to the login page
+
     navigate('/login');
   }
 
